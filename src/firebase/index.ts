@@ -67,6 +67,16 @@ export const updateUser = async (uid:string, displayName: string) => {
 
 export const disableUser =async (uid:string, disabled: boolean) => {
     const user = await admin.auth().updateUser(uid, {
-        disabled
+        disabled: true
     })
+
+    return `User with id:${uid} was disabled`;
+}
+
+export const enableUser = async (uid:string) => {
+    const user = await admin.auth().updateUser(uid, {
+        disabled: false,
+    })
+
+    return `User ${uid} was enabled`;
 }

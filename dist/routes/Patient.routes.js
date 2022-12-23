@@ -13,4 +13,6 @@ router.get('/:id', isAuthenticated_1.isAuthenticated, (0, isAuthorized_1.isAutho
     roles: ['admin'],
     allowSamerUser: true
 }), patientRepo.getPatientById);
+//router.delete('/:id', async (req:Request, res:Response) => {set is_active to false})
+//To do try catch an error if the user tries to create an user with an admin role
 exports.default = router;

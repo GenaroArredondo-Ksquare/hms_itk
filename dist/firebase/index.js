@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.disableUser = exports.updateUser = exports.getAllUsers = exports.readUser = exports.createUser = void 0;
+exports.enableUser = exports.disableUser = exports.updateUser = exports.getAllUsers = exports.readUser = exports.createUser = void 0;
 const admin = __importStar(require("firebase-admin"));
 const mapToUser = (user) => {
     const customClaims = (user.customClaims || { role: "" });
@@ -75,7 +75,15 @@ const updateUser = (uid, displayName) => __awaiter(void 0, void 0, void 0, funct
 exports.updateUser = updateUser;
 const disableUser = (uid, disabled) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield admin.auth().updateUser(uid, {
-        disabled
+        disabled: true
     });
+    return `User with id:${uid} was disabled`;
 });
 exports.disableUser = disableUser;
+const enableUser = (uid) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield admin.auth().updateUser(uid, {
+        disabled: false,
+    });
+    return `User ${uid} was enabled`;
+});
+exports.enableUser = enableUser;
